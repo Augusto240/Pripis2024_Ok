@@ -1,0 +1,34 @@
+<app-menu></app-menu>
+<br>
+<br>
+<div *ngIf="!admin">
+    <h1>Você não tem permissão para acessar esta página.</h1>
+</div>
+<div *ngIf="admin" class="login-container surface-card p-4 shadow-2 border-round w-full lg:w-6">
+    <h1>Cadastro de novo usuário</h1>
+    <br>
+    <p *ngIf="formInvalid" class="error-message">O formulário contém erros. Preencha todos os campos.</p>
+    <p *ngIf="erroSQL" class="error-message">Não foi possível cadastrar. Verifique se não há dados incorretos e tente novamente.</p>
+    <p *ngIf="cadastroSucesso" class="success-message">Dados cadastrados com sucesso!</p>
+    <br>
+    <table class="forms">
+        <tr>
+            <td><label htmlFor="usuario" class="block text-white-900 font-medium mb-2">Usuário: </label></td>
+            <td><input pInputText class="w-full mb-3" type="text" id="usuario" [(ngModel)]="login.usuario"></td>
+        </tr>
+        <tr>
+            <td><label htmlFor="senha" class="block text-white-900 font-medium mb-2">Senha: </label></td>
+            <td><p-password class="p-inputtext-sm" id="senha" [(ngModel)]="login.senha" [toggleMask]="true" [feedback]="false"></p-password></td>
+        </tr>
+        <tr>
+            <td><label htmlFor="role">Papel do usuário: </label></td>
+            <td><p-dropdown [options]="roles" [(ngModel)]="login.role" placeholder="Selecione um papel"></p-dropdown></td>
+        </tr>
+        <br>
+        <tr>
+            <td>
+                <p-button (click)="addUsuario()" label="Enviar"></p-button>
+            </td>
+        </tr>
+    </table>
+</div>

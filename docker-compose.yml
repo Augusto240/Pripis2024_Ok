@@ -1,0 +1,99 @@
+version: '3.7'
+
+services:
+
+  backend:
+    build:
+      context: backend/
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=''
+      - MYSQL_DB=dbentrada
+    volumes:
+      - ./backend/dbentrada.sql:/docker-entrypoint-initdb.d/dbentrada.sql
+      - shared-volume:/imagens/
+    depends_on:
+      - db
+      - migration
+    networks:
+      - my-networks
+    restart: unless-stopped
+    command: sh -c "npm start NODE_ENV=production"
+
+  frontend:
+    build:
+      context: frontend/
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - shared-volume:/usr/share/nginx/html/assets/images/entrada/
+    depends_on:
+      - db
+      - migration
+    networks:
+      - my-networks
+    restart: unless-stopped
+
+  db:
+    image: mysql:8.0.33
+    container_name: db
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=dbentrada
+    restart: unless-stopped
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - my-networks
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    links:
+      - db
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
+      - PMA_ARBITRARY=1
+    restart: unless-stopped
+    ports:
+      - 8081:80
+    networks:
+      - my-networks
+  
+  migration:
+    build:
+      context: backend/
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    networks:
+      - my-networks
+    command: sh -c "sleep 30 && npx sequelize-cli db:migrate && npx sequelize db:seed:all"
+
+  broker-mqtt:
+    image: eclipse-mosquitto:latest
+    container_name: broker-mqtt
+    depends_on:
+      - backend
+    ports:
+      - 1884:1884
+    networks:
+      - my-networks
+    volumes:
+      - ./mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    restart: unless-stopped
+    
+volumes:
+  mysql-data:
+  shared-volume:
+networks:
+  my-networks:

@@ -10,18 +10,6 @@ h2 {
   padding-bottom: .5rem;
 }
 
-.input-group input {
-  width: 100%;
-  flex: 1
-}
-
-.input-group {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  width: 100%;
-}
 
 .botoes {
   display: flex;
@@ -45,17 +33,37 @@ h2 {
   justify-content: flex-end;
 }
 
+.input-group {
+  display: flex;
+  align-items: center; /* Centraliza os itens verticalmente */
+  justify-content: flex-start; /* Alinha à esquerda */
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.input-group input {
+  width: auto; /* Ajusta a largura para não ocupar 100% */
+  margin-right: 10px; /* Espaçamento entre o input e o botão */
+}
+
+.p-button {
+  margin-left: 10px; /* Espaçamento para manter distância entre o input e o botão */
+  flex-shrink: 0; /* Impede o botão de encolher */
+}
+
 @media only screen and (max-width: 600px) {
   .input-group {
-      flex-direction: column; /* Empilhar elementos na vertical em telas menores */
-      align-items: flex-start; /* Alinhamento à esquerda em telas menores */
+    flex-direction: column; /* Empilha os elementos em telas menores */
+    align-items: flex-start; /* Alinha à esquerda */
   }
 
   .input-group input {
-      margin-bottom: 10px; /* Adicionar espaço entre o input e o botão em telas menores */
+    width: 100%; /* Input ocupa a largura total em telas menores */
+    margin-right: 0; /* Remove espaçamento lateral */
   }
 
-  p-button {
-      width: 100%; /* Botão ocupa a largura total em telas menores */
+  .p-button {
+    width: 100%; /* Botão ocupa a largura total em telas menores */
+    margin-left: 0; /* Remove margem à esquerda */
   }
 }

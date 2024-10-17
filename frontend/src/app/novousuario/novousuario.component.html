@@ -4,7 +4,7 @@
 <div *ngIf="!admin">
     <h1>Você não tem permissão para acessar esta página.</h1>
 </div>
-<div *ngIf="admin" class="login-container surface-card p-4 shadow-2 border-round w-full lg:w-6">
+<div *ngIf="admin">
     <h1>Cadastro de novo usuário</h1>
     <br>
     <p *ngIf="formInvalid" class="error-message">O formulário contém erros. Preencha todos os campos.</p>
@@ -21,13 +21,13 @@
             <td><p-password class="p-inputtext-sm" id="senha" [(ngModel)]="login.senha" [toggleMask]="true" [feedback]="false"></p-password></td>
         </tr>
         <tr>
-            <td><label htmlFor="role">Papel do usuário: </label></td>
+            <td><label for="role">Papel do usuário: </label></td>
             <td><p-dropdown [options]="roles" [(ngModel)]="login.role" placeholder="Selecione um papel"></p-dropdown></td>
         </tr>
         <br>
         <tr>
             <td>
-                <p-button class="w-full" [rounded]="true" severity="success" (click)="addUsuario()" label="Enviar"></p-button>
+                <p-button (click)="addUsuario()" label="Enviar"></p-button>
             </td>
         </tr>
     </table>

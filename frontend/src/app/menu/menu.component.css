@@ -1,42 +1,42 @@
 .botoes {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  width: 100%;
-  flex-wrap: wrap;
-  background-color: transparent;
-
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    width: 100%;
+    flex-wrap: wrap;
+    background-color: transparent;
+    
 }
 
 .links {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .logout {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    background-color: transparent;
 }
 
 
 
 
 @media only screen and (max-width: 600px) {
-  .botoes {
-      flex-direction: column;
-      align-items: flex-start;
-      width: 100%;
-  }
+    .botoes {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
 
-  .links, .logout {
-      width: 100%;
-      justify-content: flex-start;
-  }
+    .links, .logout {
+        width: 100%;
+        justify-content: flex-start;
+    }
 }

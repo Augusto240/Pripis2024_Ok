@@ -11,7 +11,7 @@ export class LoginComponent {
   usuario = '';
   senha = '';
   loginInvalid = false;
-
+  errorMessage = '';
   constructor(private login: LoginService, private router: Router) {}
 
   fazerLogin(): void { // Faz o login
@@ -23,6 +23,15 @@ export class LoginComponent {
         }
       },
       (error) => {
+        if (error.status === 0) {
+          this.errorMessage = 'Erro de conexão. Verifique sua internet e tente novamente.'; // Erro de conexão
+        } else if (error.status >= 500) {
+          this.errorMessage = 'Erro no servidor. Tente novamente mais tarde.'; // Erro de servidor
+        } else if (error.status === 401) {
+          this.errorMessage = 'Login ou senha inválidos. Verifique os campos e tente novamente.'; // Erro de login
+        } else {
+          this.errorMessage = 'Login ou senha inválidos. Verifique os campos e tente novamente.'; // Outros erros
+        }
         this.loginInvalid = true; // Mostra o alerta de erro
       }
     )

@@ -1,32 +1,45 @@
-.surface-card {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-}
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  
+  p.error-message {
+    text-align: center;
+    font-size: 14px;
+    color: #ff0000;
+    margin-bottom: 20px;
+  }
 
-h2 {
-  text-align: center;
-  font-family: "Open Sans", "Lato", sans-serif;
-  font-weight: 600;
-  font-size: 2.1rem;
-  color: #292929;
-  margin-bottom: 2rem;
-}
+  p.success-message {
+    text-align: center;
+    font-size: 14px;
+    color: #00ff00;
+    margin-bottom: 20px;
+  }
+  
+  table.forms {
+    width: 400px;
+    border-radius: 6px;
+    padding: 20px;
+    margin: 0 auto;
+  }
+  
+  table.forms td {
+    padding: 5px;
+  }
+  
+  
 
-.text-red-600 {
-  color: #ff0000;
-}
-
-.text-green-600 {
-  color: #00ff00;
-}
-
-.forms {
-  width: 100%;
-}
-
-.button-container {
-  margin-top: 20px;
-}
+  

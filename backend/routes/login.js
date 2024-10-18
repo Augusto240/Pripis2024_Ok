@@ -198,7 +198,7 @@ router.post('/solicitar-recuperacao', async (req, res) => {
                 from: process.env.USER, // seu email
                 to: email,
                 subject: 'Recuperação de senha',
-                text: `Use o link abaixo para redefinir sua senha: http://localhost:8080/redefinir-senha/${token}`
+                text: `Use o link abaixo para redefinir sua senha: http://localhost:8081/redefinir-senha/${token}`
             };
 
             transporter.sendMail(mailOptions, (error) => {

@@ -58,12 +58,14 @@ module.exports = {
       {
         idlogin: 1,
         usuario: 'admin1',
+        email: 'admin1@mail.com',
         senha: '$2b$10$B48AwOk4psGv6zGvzkcbUeRLtVFTIdlp.FChRWKzuI8EkLs4bWffq',
         role: 'user'
       },
       {
         idlogin: 2,
         usuario: 'adminvdd',
+        email: 'adminvdd@mail.com',
         senha: '$2b$10$zv5nQ2Unt.tlwhZOaCS5oOODBCLHL73buV0vK7vz.g9O36LVb4Ekq',
         role: 'admin'
     }

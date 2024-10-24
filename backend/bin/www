@@ -4,7 +4,12 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+//ajustando aqui o caminho do arquivo app.js para a nova forma que exportei lá
+//antes ele estava assim:
+//var app = require('../app');
+//versao nova:
+var { app } = require('../app');
+
 var debug = require('debug')('back-end-carros:server');
 var http = require('http');
 

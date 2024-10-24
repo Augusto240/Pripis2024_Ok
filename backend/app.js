@@ -52,4 +52,16 @@ app.use('/entrada', entradaRouter);
 app.use('/mqtt', mqttRouter);
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 const sequelize = new Sequelize(dbConfig);
-module.exports = app, sequelize;
+
+//aqui eu fiz uma alteração pra exportar o app e o sequelize
+//aqui está a forma como era antes
+
+//module.exports = app, sequelize;
+
+//aqui está a forma como eu fiz agora pra ver se resolve um erro que estava dando
+module.exports = { app, sequelize };
+
+//teste de rota simples pra ver se ta tudo ok
+app.get('/api', (req, res) => {
+  res.send('API está funcionando!');
+});
